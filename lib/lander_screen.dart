@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,17 +12,9 @@ class LanderScreen extends StatefulWidget {
 }
 
 class _MyLanderScreenState extends State<LanderScreen> {
-  StreamSubscription _sub;
-
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _sub.cancel();
-    super.dispose();
   }
 
   @override

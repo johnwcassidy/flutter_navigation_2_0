@@ -62,12 +62,16 @@ class AppRouterDelegate extends RouterDelegate<RoutePath>
         create: (_) => NavigationManager(delegate: _navigationManagerDelegate),
         child: Navigator(
           key: navigatorKey,
-          pages: stack.items.map((e) {
+          pages: stack.items.asMap().entries.map((e) {
+            int index = e.key;
+            RoutePath configuration = e.value;
             // iterate through each of the pages in our stack and construct them
             // providing the same key should prevent a new item from being created
-            ValueKey key = ValueKey('${e.id}-${e.argument}');
-            if (e.isDetailsPage) return MaterialPage(key: key, child: DetailsScreen(itemId: e.argument));
-            if (e.isLanderPage) return MaterialPage(key: key, child: LanderScreen());
+            // so let's use the index which will be unique
+            ValueKey key = ValueKey(index);
+            if (configuration.isDetailsPage)
+              return MaterialPage(key: key, child: DetailsScreen(itemId: configuration.argument));
+            if (configuration.isLanderPage) return MaterialPage(key: key, child: LanderScreen());
           }).toList(),
           onPopPage: (route, result) {
             // let the OS handle the back press if there was nothing to pop

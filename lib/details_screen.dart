@@ -10,11 +10,9 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenAppState extends State<DetailsScreen> {
-  String timestamp;
-
   @override
   void initState() {
-    timestamp = '${DateTime.now().millisecondsSinceEpoch}';
+    // do something for the details screen
     super.initState();
   }
 
